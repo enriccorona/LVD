@@ -11,7 +11,7 @@ Learned Vertex Descent works with the parametric models SMPL or MANO, which can 
 
 ### SMPL or MANO files:
 
-Download the SMPL file from [[this link]](https://drive.google.com/file/d/1gwU794SottM4Nk66ig87GPJm7TjQQEwi/view?usp=sharing)
+Download the neutral SMPL file from [[this link]](https://drive.google.com/file/d/1gwU794SottM4Nk66ig87GPJm7TjQQEwi/view?usp=sharing)
 and put it under the folder utils/
 
 With MANO, we follow the pytorch implementation from `https://github.com/hassony2/manopth`
@@ -27,16 +27,16 @@ Get the trained checkpoints from [[this link]](https://drive.google.com/file/d/1
 
 ## TESTING:
 
-We provide a few examples to run tests with the trained checkpoints, on all the tasks. Results will be saved under results/
+We provide a few examples to test the trained checkpoints, on all the tasks proposed in our paper. We also provide a few testing samples, and all results will be saved under `results/`
 
 ### SMPL estimation from images:
 To test LVD on the task of SMPL estimation from monocular images, run one of the following commands. The test script will take the input image and mask and predict SMPL.
-By default we also fit SMPL after the prediction, which will help to correct any imperfection or get pose and shape SMPL parameters. However, you can disactivate this option to get much faster predictions. The model shown in the paper can be executed with the following command:
+By default we also fit SMPL after the prediction, which will help to correct any imperfection or get pose and shape SMPL parameters. However, you can disactivate this option to get much faster predictions.
 ```
 python test_LVD_images.py --model LVD_images_SMPL --name LVD_images_SMPL
 ```
 
-However, we noticed that predictions are a bit more robust when also passing the mask to the network, which can be concatenated to the RGB output:
+We noticed that predictions are a bit more robust when also passing the mask as input to the network, which can be concatenated to the RGB input image:
 ```
 python test_LVD_images.py --model LVD_images_wmask_SMPL --name LVD_images_wmask_SMPL
 ```
@@ -52,10 +52,6 @@ For the task of MANO estimation when taking 3D pointclouds of hands as input, we
 ```
 python test_LVD_MANO.py --model LVD_voxels_MANO --name LVD_voxels_MANO --batch_size 1
 ```
-
-
-
-
 
 
 ## TRAINING:
@@ -76,7 +72,7 @@ tensorboard --logdir=.
 ```
 
 ### Training SMPL estimation method from images:
-If you want to train LVD on a larger data, we provide an example of our dataloader for the RenderPeople dataset, where we train with the following commands:
+If you want to train LVD on a larger dataset, we provide an example of our dataloader for the RenderPeople dataset, where we train with the following commands:
 
 Training original model:
 ```
@@ -89,13 +85,13 @@ python train.py --dataset_mode images_SMPL --model LVD_images_wmask_SMPL --nepoc
 ```
 
 ### Training SMPL estimation from 3D scans:
-We also provide code to train for the task of SMPL estimation from input volumetric representations, following:
+We also provide code to train LVD for the task of SMPL estimation from input volumetric representations, following:
 ```
 python train.py --dataset_mode voxels_SMPL --model LVD_voxels_SMPL --nepochs_no_decay 50 --nepochs_decay 50 --lr_G 0.001 --name hand_lvd_v3 --batch_size 4 --display_freq_s 300
 ```
 
 ### Training MANO estimation from 3D scans:
-And finally use the following command to run on volumetric representations of hands, which include noisy hands or hands grasping objects:
+And finally, use the following command to run on volumetric representations of hands, which include noisy hands or hands grasping objects:
 ```
 python train.py --dataset_mode voxels_MANO --model LVD_voxels_MANO --nepochs_no_decay 50 --nepochs_decay 50 --lr_G 0.001 --name hand_lvd_v3 --batch_size 4 --display_freq_s 300
 ```
