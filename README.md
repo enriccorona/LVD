@@ -1,6 +1,6 @@
 
 
-# Learned Vertex Descent:
+# Learned Vertex Descent: A New Direction for 3D Human Model Fitting (ECCV 2022)
 
 [[Project]](http://www.iri.upc.edu/people/ecorona/lvd/) [[arXiv]](https://arxiv.org/abs/2205.06254)<!-- TODO: Fitting SMPLicit -->
 
