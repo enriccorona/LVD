@@ -9,19 +9,16 @@
 ## DATA:
 Learned Vertex Descent works with the parametric models SMPL or MANO, which can be downloaded from their websites. In particular, we use the neutral SMPL with cocoplus regressor and the original MANO layer for pytorch. If you need to train the model on humans you will need supervision on SMPL, which we had on 3D scans with SMPL registrations. However, we also provide trained checkpoints for the task of SMPL estimation from images, SMPL estimation from 3D scans and MANO estimation from 3D hand scans.
 
-### SMPL or MANO files:
+### SMPL or MANO files:
+
 Download the SMPL file from [[this link]](https://drive.google.com/file/d/1gwU794SottM4Nk66ig87GPJm7TjQQEwi/view?usp=sharing)
 and put it under the folder utils/
 
 With MANO, we follow the pytorch implementation from `https://github.com/hassony2/manopth`
 
-### Training data:
-We use the following datasets:
-RenderPeople: https://renderpeople.com/
+### Training data:
 
-AXYZ: https://secure.axyz-design.com/
-
-Twindom: https://web.twindom.com/
+For training on the task of SMPL estimation from images or pointclouds, we use the [[RenderPeople]](https://renderpeople.com/), [[AXYZ]](https://secure.axyz-design.com/) and [[Twindom]](https://web.twindom.com/) datasets.
 
 The pre-processing follows a similar approach as in other works and, in particular, should follow the same procedure as in IP-Net. Please go to their repo to follow these steps: `https://github.com/bharat-b7/IPNet`
 
@@ -104,10 +101,7 @@ python train.py --dataset_mode voxels_MANO --model LVD_voxels_MANO --nepochs_no_
 ```
 
 ## Running on a headless server:
-If you have any issue when running on a headless server, run any of the previous commands with XVFB:
-```
-xvfb-run -a python train...
-```
+If you have any issue when running on a headless server, run any of the previous commands with XVFB: `xvfb-run -a python ...`
 
 ## Citation:
 ```
