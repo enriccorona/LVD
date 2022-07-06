@@ -1,0 +1,5 @@
+*.obj
+*.mp4
+*.pyc
+neutral_smpl_with_cocoplus_reg.txt
+checkpoints/

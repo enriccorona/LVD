@@ -2,55 +2,56 @@
 
 # Learned Vertex Descent:
 
-## SUMMARY:
-
 [[Project]](http://www.iri.upc.edu/people/ecorona/lvd/) [[arXiv]](https://arxiv.org/abs/2205.06254)<!-- TODO: Fitting SMPLicit -->
 
 <img src='https://www.iri.upc.edu/people/ecorona/lvd/lvd_teaser.png' width=800>
 
 ## DATA:
-To train our model, we require downloading the SMPL 
+Learned Vertex Descent works with the parametric models SMPL or MANO, which can be downloaded from their websites. In particular, we use the neutral SMPL with cocoplus regressor and the original MANO layer for pytorch. If you need to train the model on humans you will need supervision on SMPL, which we had on 3D scans with SMPL registrations. However, we also provide trained checkpoints for the task of SMPL estimation from images, SMPL estimation from 3D scans and MANO estimation from 3D hand scans.
 
 ### SMPL or MANO files:
-Download the SMPL file from this link:
-https://drive.google.com/file/d/1gwU794SottM4Nk66ig87GPJm7TjQQEwi/view?usp=sharing
+Download the SMPL file from [[this link]](https://drive.google.com/file/d/1gwU794SottM4Nk66ig87GPJm7TjQQEwi/view?usp=sharing)
 and put it under the folder utils/
 
-With MANO, we follow the pytorch implementation from https://github.com/hassony2/manopth
+With MANO, we follow the pytorch implementation from `https://github.com/hassony2/manopth`
 
 ### Training data:
 We use the following datasets:
 RenderPeople: https://renderpeople.com/
+
 AXYZ: https://secure.axyz-design.com/
+
 Twindom: https://web.twindom.com/
 
-The pre-processing follows a similar approach as in other works and, in particular, should follow the same procedure as in IP-Net. Please go to their repo to follow these steps: https://github.com/bharat-b7/IPNet
+The pre-processing follows a similar approach as in other works and, in particular, should follow the same procedure as in IP-Net. Please go to their repo to follow these steps: `https://github.com/bharat-b7/IPNet`
 
 ### Trained checkpoints:
-Get the trained checkpoints from this link:
-https://drive.google.com/file/d/19Z0dm1ZkOafkGignvIljyqqbHoHeukfW/view?usp=sharing
-and unzip the file on the main folder
+Get the trained checkpoints from [[this link]](https://drive.google.com/file/d/19Z0dm1ZkOafkGignvIljyqqbHoHeukfW/view?usp=sharing) and unzip the file on the main folder
 
 ## TESTING:
 
 We provide a few examples to run tests with the trained checkpoints, on all the tasks. Results will be saved under results/
 
 ### SMPL estimation from images:
-By default we fit SMPL after the prediction, to correct any imperfection or get pose and shape SMPL parameters. Feel free to disactivate this option to get much faster predictions.
+To test LVD on the task of SMPL estimation from monocular images, run one of the following commands. The test script will take the input image and mask and predict SMPL.
+By default we also fit SMPL after the prediction, which will help to correct any imperfection or get pose and shape SMPL parameters. However, you can disactivate this option to get much faster predictions. The model shown in the paper can be executed with the following command:
 ```
 python test_LVD_images.py --model LVD_images_SMPL --name LVD_images_SMPL
 ```
-or 
+
+However, we noticed that predictions are a bit more robust when also passing the mask to the network, which can be concatenated to the RGB output:
 ```
 python test_LVD_images.py --model LVD_images_wmask_SMPL --name LVD_images_wmask_SMPL
 ```
 
 ### SMPL estimation from 3D scans:
+When taking volumetric inputs, we need to convert them to voxel representations. The following script will run automatically for any input 3D scan and generate the SMPL predictions:
 ```
 python test_LVD_3Dscans.py --model LVD_voxels_SMPL --name LVD_voxels_SMPL --batch_size 1
 ```
 
 ### MANO estimation from 3D scans:
+For the task of MANO estimation when taking 3D pointclouds of hands as input, we can run the following command. This will test the trained checkpoint on all the pointclouds under the demo folder.
 ```
 python test_LVD_MANO.py --model LVD_voxels_MANO --name LVD_voxels_MANO --batch_size 1
 ```
@@ -76,7 +77,6 @@ On another tab, one can check the progress with tensorboard by running:
 ```
 tensorboard --logdir=.
 ```
-
 
 ### Training SMPL estimation method from images:
 If you want to train LVD on a larger data, we provide an example of our dataloader for the RenderPeople dataset, where we train with the following commands:
@@ -108,13 +108,6 @@ If you have any issue when running on a headless server, run any of the previous
 ```
 xvfb-run -a python train...
 ```
-
-## Acknowledgments:
-
-- IP-Net
-- PIFuHD (some functions taken from them)
-- Template from GANimation:
-- SMPL and MANO
 
 ## Citation:
 ```
