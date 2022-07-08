@@ -52,7 +52,7 @@ OR
 python test_LVD_images.py --model LVD_images_wmask_SMPL --name LVD_images_wmask_SMPL
 ```
 
-Note, however, that our method will likely fail in complex poses that are different from the poses in the RenderPeople dataset, which are usually standing. On the other hand, it should capture better the body shape of the input images.
+Note, however, that our method will likely fail in complex poses that are different from the poses in the RenderPeople dataset, which are mostly in standing poses. On the other hand, it should capture better the body shape of the input images.
 
 
 ### SMPL estimation from 3D scans:
