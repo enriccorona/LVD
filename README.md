@@ -41,6 +41,20 @@ We noticed that predictions are a bit more robust when also passing the mask as 
 python test_LVD_images.py --model LVD_images_wmask_SMPL --name LVD_images_wmask_SMPL
 ```
 
+### SMPL estimation from images in the wild:
+The previous script requires both input image and segmentation mask, both being roughly centered. We also provide the following script to take just a normal image and preprocess it automatically. For that, we leverage the mediapipe library, which is straightforward to install and easy to use. To install it, just run `pip install mediapipe`, and execute the following script:
+
+```
+python test_LVD_images.py --model LVD_images_SMPL --name LVD_images_SMPL
+```
+OR
+```
+python test_LVD_images.py --model LVD_images_wmask_SMPL --name LVD_images_wmask_SMPL
+```
+
+Note, however, that our method will likely fail in complex poses that are different from the poses in the RenderPeople dataset, which are usually standing. On the other hand, it should capture better the body shape of the input images.
+
+
 ### SMPL estimation from 3D scans:
 When taking volumetric inputs, we need to convert them to voxel representations. The following script will run automatically for any input 3D scan and generate the SMPL predictions:
 ```
