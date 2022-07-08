@@ -29,8 +29,8 @@ class Dataset(DatasetBase):
     def __init__(self, opt, mode):
         super(Dataset, self).__init__(opt, mode)
         self._name = 'Dataset'
-        self.data_dir = '/home/ecorona/cvpr22/reconstruction/data/renders_augmented_ipnet/'
-        self.scans_dir = '/home/ecorona/cvpr22/reconstruction/data/ipnet_data_reposed/'
+        self.data_dir = '/home/ecorona/eccv22/reconstruction/data/renders_augmented_ipnet/'
+        self.scans_dir = '/home/ecorona/eccv22/reconstruction/data/ipnet_data_reposed/'
 
         # read dataset
         # Since this is an overfitting scenario, let's have same images in both training and valid. dataloaders

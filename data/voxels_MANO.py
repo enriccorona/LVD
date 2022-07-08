@@ -29,8 +29,8 @@ class Dataset(DatasetBase):
     def __init__(self, opt, mode):
         super(Dataset, self).__init__(opt, mode)
         self._name = 'Dataset'
-        self.scans_dir = '/home/ecorona/cvpr22/reconstruction/data/mano/voxels/train/'
-        self.scans_dir_test = '/home/ecorona/cvpr22/reconstruction/data/mano/voxels/test/'
+        self.scans_dir = '/home/ecorona/eccv22/reconstruction/data/mano/voxels/train/'
+        self.scans_dir_test = '/home/ecorona/eccv22/reconstruction/data/mano/voxels/test/'
 
         self.train_inds = np.load('train_inds_mano.npy')
         self.test_inds = np.load('test_inds_mano.npy')

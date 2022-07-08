@@ -28,8 +28,8 @@ class Dataset(DatasetBase):
     def __init__(self, opt, mode):
         super(Dataset, self).__init__(opt, mode)
         self._name = 'Dataset'
-        self.scans_dir = '/home/ecorona/cvpr22/reconstruction/data/ipnet_data/generate_voxels/voxels/'
-        self.scans_dir_augmented = '/home/ecorona/cvpr22/reconstruction/data/ipnet_data/generate_voxels/voxels_augmented/'
+        self.scans_dir = '/home/ecorona/eccv22/reconstruction/data/ipnet_data/generate_voxels/voxels/'
+        self.scans_dir_augmented = '/home/ecorona/eccv22/reconstruction/data/ipnet_data/generate_voxels/voxels_augmented/'
 
         if self._mode == 'train':
             self.data = [self.scans_dir + '/axyz/']*106 + \

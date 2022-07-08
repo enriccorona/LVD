@@ -491,9 +491,9 @@ class meshRenderer(glRenderer):
 
         self.render_mode = render_mode
         self.program_files ={}
-        self.program_files['color'] = ['/home/ecorona/cvpr22/reconstruction/model/utils/shaders//simple140.fs', '//home/ecorona/cvpr22/reconstruction/model/utils/shaders/simple140.vs']
-        self.program_files['normal'] = ['//home/ecorona/cvpr22/reconstruction/model/utils/shaders/normal140.fs', '//home/ecorona/cvpr22/reconstruction/model/utils/shaders/normal140.vs']
-        self.program_files['geo'] = ['//home/ecorona/cvpr22/reconstruction/model/utils/shaders/colorgeo140.fs', '//home/ecorona/cvpr22/reconstruction/model/utils/shaders/colorgeo140.vs']
+        self.program_files['color'] = ['utils/shaders//simple140.fs', 'utils/shaders/simple140.vs']
+        self.program_files['normal'] = ['utils/shaders/normal140.fs', 'utils/shaders/normal140.vs']
+        self.program_files['geo'] = ['utils/shaders/colorgeo140.fs', 'utils/shaders/colorgeo140.vs']
 
         glRenderer.__init__(self, width, height, name, self.program_files[render_mode], color_size, ms_rate)
 
