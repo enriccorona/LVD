@@ -101,6 +101,7 @@ class Test:
 
             # Normalize values as in ImageNet:
             img = img / 255
+            mask = mask / 255
             imgtensor = img - [0.485, 0.456, 0.406]
             imgtensor = imgtensor / [0.229, 0.224, 0.225]
             imgtensor = imgtensor.transpose(2, 0, 1)
