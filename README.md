@@ -11,10 +11,11 @@ Learned Vertex Descent works with the parametric models SMPL or MANO, which can 
 
 ### SMPL or MANO files:
 
-Download the neutral SMPL file from [[this link]](https://drive.google.com/file/d/1gwU794SottM4Nk66ig87GPJm7TjQQEwi/view?usp=sharing)
-and put it under the folder utils/
+We trained our networks with the neutral SMPL model. Please download the neutral SMPL files from the [[official website]](https://smpl.is.tue.mpg.de/) and place the `neutral_smpl_with_cocoplus_reg.txt` under the utils/ folder. 
 
-With MANO, we follow the pytorch implementation from `https://github.com/hassony2/manopth`
+With the task of 3D hand reconstruction, we use MANO and follow the pytorch implementation from `https://github.com/hassony2/manopth`. Please follow their instructions to download MANO from the official website and install the MANO library.
+
+Please respect the license of the respective works.
 
 ### Training data:
 
