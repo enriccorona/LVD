@@ -32,5 +32,9 @@ dependencies:
   - ipython
   - pip
   - pip:
-      - -r pip_requirements.txt
-      - -r more_requirements.txt
+      - mediapipe
+      - scikit-image
+      - opendr
+      - smplx
+      - torchgeometry
+      - -r requirements.txt

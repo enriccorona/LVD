@@ -1,2 +1,0 @@
--f https://nvidia-kaolin.s3.us-east-2.amazonaws.com/torch-2.0.1_cu118.html
-kaolin==0.14.0
