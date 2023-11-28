@@ -1,0 +1,5 @@
+mediapipe
+scikit-image
+opendr
+smplx
+torchgeometry
