@@ -1,0 +1,6 @@
+[submodule "HierarchicalProbabilistic3DHuman"]
+	path = HierarchicalProbabilistic3DHuman
+	url = https://github.com/akashsengupta1997/HierarchicalProbabilistic3DHuman.git
+[submodule "manopth"]
+	path = manopth
+	url = https://github.com/hassony2/manopth.git

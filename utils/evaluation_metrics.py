@@ -20,8 +20,8 @@ import os
 import pyhull.convex_hull as cvh
 import cvxopt as cvx
 
-from manopth import rodrigues_layer
-from manopth.tensutils import th_posemap_axisang, make_list, th_pack, subtract_flat_id, th_with_zeros
+from manopth.manopth import rodrigues_layer
+from manopth.manopth.tensutils import th_posemap_axisang, make_list, th_pack, subtract_flat_id, th_with_zeros
 
 import trimesh
 import pyquaternion
