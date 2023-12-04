@@ -39,3 +39,4 @@ dependencies:
       - smplx
       - torchgeometry
       - -r requirements.txt
+      - rembg[gpu,cli]
