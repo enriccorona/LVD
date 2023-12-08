@@ -9,34 +9,36 @@ channels:
 
 dependencies:
   - python=3.8
-  - pytorch==2.0.1
-  - torchvision==0.15.2
-  - torchaudio==2.0.2
+  - pytorch=2.0.1=*cuda11.8*
+  - torchvision=0.15.2=*cu118*
   - pytorch-cuda=11.8
   - numpy<1.24
   - scikit-learn
   - scipy
-  - matplotlib
-  - trimesh
-  - opencv
-  - pyhull
   - cvxopt
-  - pyopengl
   - freeglut
-  - mesa
-  - menpo::osmesa
-  - pyrender
-  - pyquaternion
-  - point_cloud_utils
-  - tqdm
-  - tensorboardx
   - ipython
+  - imgaug
+  - matplotlib
+  - menpo::osmesa
+  - mesa
+  - opencv
   - pip
+  - point_cloud_utils
+  - pyhull
+  - pyopengl
+  - pyquaternion
+  - pyrender
+  - tensorboardx
+  - tqdm
+  - trimesh
   - pip:
+      - -r requirements.txt
       - mediapipe
-      - scikit-image
       - opendr
+      - rembg[gpu,cli]
+      - scikit-image
       - smplx
       - torchgeometry
-      - -r requirements.txt
-      - rembg[gpu,cli]
+      - git+https://github.com/hassony2/chumpy.git
+      - ./manopth
