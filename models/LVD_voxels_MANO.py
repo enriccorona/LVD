@@ -31,7 +31,11 @@ class Model(BaseModel):
         # init
         self._init_losses()
         from manopth.manolayer import ManoLayer
-        self.MANO = ManoLayer(ncomps=45, mano_root='/home/ecorona/libraries/manopth/mano/models/', use_pca=False)
+        
+        self.MANO = ManoLayer(ncomps=45,
+                              mano_root=os.path.join(os.sep.join(os.path.abspath(os.path.dirname(__file__)).split(os.sep)[:-1]),
+                                                    'manopth', 'mano', 'models'),
+                              use_pca=False)
 
         self.pred_mesh = None
         # Sigma different per each axis
