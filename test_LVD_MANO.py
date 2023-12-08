@@ -1,4 +1,5 @@
 #os.environ["PYOPENGL_PLATFORM"] = "osmesa" # Here we will use xvfb with frankmocap's rendering code, so don't need osmesa
+import os
 import glob
 from options.test_options import TestOptions
 from models.models import ModelsFactory
@@ -8,7 +9,7 @@ import numpy as np
 from utils.sdf import create_grid
 import torch
 import trimesh
-from kaolin.metrics import  directed_distance
+from kaolin.metrics.pointcloud import sided_distance
 
 class Test:
     def __init__(self):
@@ -64,7 +65,7 @@ class Test:
         # set model to eval
         self._model.set_eval()
         from manopth.manolayer import ManoLayer
-        mano_root = '/home/ecorona/libraries/manopth/mano/models/'
+        mano_root = os.path.join(os.path.split(os.path.abspath(__file__))[0], 'manopth/mano/models')
         self.MANO = ManoLayer(ncomps=12, mano_root=mano_root, use_pca=True, side='left')
         self.MANO.cuda()
         self.mano_faces = self.MANO.th_faces.cpu().data.numpy()
@@ -143,10 +144,10 @@ class Test:
                 vertices_smpl /= 100
                 vertices_smpl = (vertices_smpl + trans)*scale
 
-                d1 = torch.sqrt(directed_distance(vertices_scan_torch, vertices_smpl[0], False)).mean()
-                d2 = torch.sqrt(directed_distance(vertices_smpl[0], vertices_scan_torch, False)).mean()
+                # d1 = torch.sqrt(directed_distance(vertices_scan_torch, vertices_smpl[0], False)).mean()
+                # d2 = torch.sqrt(directed_distance(vertices_smpl[0], vertices_scan_torch, False)).mean()
 
-                loss = d1 + d2
+                loss = 2 * sided_distance(torch.unsqueeze(vertices_scan_torch,0), torch.unsqueeze(vertices_smpl[0],0))[0].mean()
 
                 prior_loss = (pose**2).mean() #self.prior.forward(pose[:, 3:], beta)
                 beta_loss = (beta**2).mean()
